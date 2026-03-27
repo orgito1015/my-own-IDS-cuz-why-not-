@@ -92,7 +92,7 @@ function monitorLogFile(logPath: string): void {
       });
 
       let buffer = '';
-      stream.on('data', (chunk: string) => (buffer += chunk));
+      stream.on('data', (chunk: string | Buffer) => (buffer += chunk.toString()));
       stream.on('end', () => {
         lastSize = stat.size;
         const lines = buffer.split('\n').filter(Boolean);
