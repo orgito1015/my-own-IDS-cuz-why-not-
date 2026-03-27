@@ -1,0 +1,8 @@
+{
+  "name": "simple-ids",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "pcap": "^3.0.0"
+  }
+}
