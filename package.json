@@ -9,7 +9,9 @@
     "dev": "ts-node src/main.ts",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "dashboard:dev": "npm run dev --prefix dashboard",
+    "dashboard:build": "npm run build --prefix dashboard"
   },
   "dependencies": {
     "axios": "^1.7.9",

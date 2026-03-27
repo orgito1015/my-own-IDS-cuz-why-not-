@@ -85,7 +85,33 @@ scripts/             attack simulation helpers
 
 ---
 
-## ⚡ Quick Start (native)
+## 📊 React Dashboard
+
+A live React dashboard is included in the `dashboard/` directory. It provides:
+
+- **Stats Overview** — total events, total alerts, and unacknowledged alert counts
+- **Traffic Charts** — events by type (bar chart), alerts by severity (pie chart), top source IPs (horizontal bar chart)
+- **Live Alerts Panel** — real-time alert table fed via WebSocket; supports one-click acknowledgement
+
+### Running the dashboard
+
+```bash
+# Install dashboard dependencies (once)
+cd dashboard && npm install
+
+# Start the IDS backend (in one terminal)
+npm run dev
+
+# Start the dashboard (in another terminal)
+npm run dashboard:dev
+# → opens at http://localhost:5173
+```
+
+The dashboard proxies all `/api/*` and WebSocket traffic to the backend at `http://localhost:3000`.
+
+---
+
+
 
 ### Prerequisites
 
@@ -260,7 +286,7 @@ Tests cover:
 
 ## 📋 Roadmap
 
-- [ ] React dashboard (live alerts, traffic charts)
+- [x] React dashboard (live alerts, traffic charts)
 - [ ] Redis caching for hot stats
 - [ ] PostgreSQL / MongoDB storage backend option
 - [ ] GeoIP enrichment for source IPs
