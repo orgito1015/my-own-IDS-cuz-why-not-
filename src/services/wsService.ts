@@ -1,3 +1,4 @@
+import http from 'http';
 import { WebSocketServer, WebSocket } from 'ws';
 import { logger } from '../utils/logger';
 
@@ -8,7 +9,7 @@ class WsService {
   private wss: WebSocketServer | null = null;
   private clients: Set<WebSocket> = new Set();
 
-  attach(server: unknown): void {
+  attach(server: http.Server): void {
     this.wss = new WebSocketServer({ server });
 
     this.wss.on('connection', (ws) => {

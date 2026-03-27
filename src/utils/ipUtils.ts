@@ -33,9 +33,19 @@ export function ipToNumber(ip: string): number {
 }
 
 /**
- * Sanitize user input that may contain an IP address
+ * Sanitize user input that may contain an IP address.
+ * Extracts a valid IPv4 or IPv6 address from the start of the input,
+ * returning an empty string if no valid address is found.
  */
 export function sanitizeIP(input: string): string {
-  // Strip any characters that are not valid in an IP address
-  return input.replace(/[^0-9a-fA-F:.]/g, '').slice(0, 45);
+  const trimmed = input.trim();
+  // Try to extract a valid IPv4 address anchored at the start
+  const ipv4Match = trimmed.match(/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/);
+  if (ipv4Match) {
+    return isValidIPv4(ipv4Match[1]) ? ipv4Match[1] : '';
+  }
+  // Try to extract an IPv6 address anchored at the start
+  const ipv6Match = trimmed.match(/^[0-9a-fA-F:]{2,39}/);
+  if (ipv6Match && ipv6Match[0].includes(':')) return ipv6Match[0];
+  return '';
 }
